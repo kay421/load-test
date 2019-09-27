@@ -37,8 +37,8 @@ ENV PATH $PATH:$JMETER_BIN
 
 WORKDIR ${JMETER_HOME}
 
-ADD start-slave.sh /usr/local/bin
-RUN chmod +x /usr/local/bin/start-slave.sh
+ADD container_start_slave.sh /usr/local/bin
+RUN chmod +x /usr/local/bin/container_start_slave.sh
 
 #==============
 # Expose Ports
@@ -46,4 +46,4 @@ RUN chmod +x /usr/local/bin/start-slave.sh
 EXPOSE 1099 50000
 
 ENTRYPOINT []
-CMD ["start-slave.sh"]
+CMD ["container_start_slave.sh"]

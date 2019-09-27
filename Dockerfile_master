@@ -1,0 +1,43 @@
+FROM alpine:3.9
+
+ARG JMETER_VERSION="5.1.1"
+ARG PLUGIN_VERSION="1.4.0"
+
+ARG pip_installer="https://bootstrap.pypa.io/get-pip.py"
+ARG awscli_version="1.16.76"
+
+ENV JMETER_HOME /opt/apache-jmeter-${JMETER_VERSION}
+ENV JMETER_BIN  ${JMETER_HOME}/bin
+ENV JMETER_DOWNLOAD_URL  https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz
+ENV PLUGIN_DOWNLOAD_URL  https://jmeter-plugins.org/downloads/file/JMeterPlugins-Standard-${PLUGIN_VERSION}.zip
+
+# Install extra packages
+ARG TZ="Asia/Tokyo"
+RUN    apk update \
+    && apk upgrade \
+    && apk add ca-certificates \
+    && update-ca-certificates \
+    && apk add --update openjdk8-jre tzdata curl unzip bash \
+    && apk add --no-cache nss \
+    && apk add python \
+    && rm -rf /var/cache/apk/* \
+    && mkdir -p /tmp/dependencies  \
+    && curl -L --silent ${JMETER_DOWNLOAD_URL} >  /tmp/dependencies/apache-jmeter-${JMETER_VERSION}.tgz  \
+    && curl -L --silent ${PLUGIN_DOWNLOAD_URL} >  /tmp/dependencies/JMeterPlugins-${PLUGIN_VERSION}.zip  \
+    && mkdir -p /opt  \
+    && tar -xzf /tmp/dependencies/apache-jmeter-${JMETER_VERSION}.tgz -C /opt  \
+    && unzip -oq "/tmp/dependencies/JMeterPlugins-${PLUGIN_VERSION}.zip" -d $JMETER_HOME  \
+    && rm -rf /tmp/dependencies
+
+# Install awscli
+RUN curl ${pip_installer} | python && \
+    pip install awscli==${awscli_version}
+
+ENV PATH $PATH:$JMETER_BIN
+
+WORKDIR ${JMETER_HOME}
+
+#==============
+# Expose Ports
+#==============
+EXPOSE 60000

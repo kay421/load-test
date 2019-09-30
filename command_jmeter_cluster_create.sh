@@ -58,7 +58,7 @@ echo "Number of worker nodes on this cluster is " $nodes
 
 echo
 
-#echo "Creating $nodes Jmeter slave replicas and service"
+echo "Creating $nodes Jmeter slave replicas and service"
 
 echo
 

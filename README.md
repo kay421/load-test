@@ -33,7 +33,7 @@ eksctl create cluster --name <CLUSTER_NAME> \
 --region ap-northeast-1 \
 --version 1.13 \
 --nodegroup-name <WORKER_NODE_NAME> \
---node-type $node_type \
+--node-type <NODE_INSTANCE_TYPE> \
 --nodes <DESIRED_NODES> \
 --nodes-min <MINIMUM_NODES> \
 --nodes-max <MAX_NODES> \

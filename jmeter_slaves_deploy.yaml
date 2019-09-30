@@ -5,7 +5,7 @@ metadata:
   labels:
     jmeter_mode: slave
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       jmeter_mode: slave
@@ -23,3 +23,10 @@ spec:
         ports:
         - containerPort: 1099
         - containerPort: 50000
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"

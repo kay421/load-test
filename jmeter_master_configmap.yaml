@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: jmeter-load-test
   labels:
-    app: influxdb-jmeter
+    app: jmeter-result
 data:
   load_test: |
     #!/bin/bash

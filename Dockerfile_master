@@ -3,9 +3,6 @@ FROM alpine:3.9
 ARG JMETER_VERSION="5.1.1"
 ARG PLUGIN_VERSION="1.4.0"
 
-ARG pip_installer="https://bootstrap.pypa.io/get-pip.py"
-ARG awscli_version="1.16.76"
-
 ENV JMETER_HOME /opt/apache-jmeter-${JMETER_VERSION}
 ENV JMETER_BIN  ${JMETER_HOME}/bin
 ENV JMETER_DOWNLOAD_URL  https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz
@@ -28,10 +25,6 @@ RUN    apk update \
     && tar -xzf /tmp/dependencies/apache-jmeter-${JMETER_VERSION}.tgz -C /opt  \
     && unzip -oq "/tmp/dependencies/JMeterPlugins-${PLUGIN_VERSION}.zip" -d $JMETER_HOME  \
     && rm -rf /tmp/dependencies
-
-# Install awscli
-RUN curl ${pip_installer} | python && \
-    pip install awscli==${awscli_version}
 
 ENV PATH $PATH:$JMETER_BIN
 

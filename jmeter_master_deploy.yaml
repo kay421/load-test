@@ -13,8 +13,6 @@ spec:
     metadata:
       labels:
         jmeter_mode: master
-      annotations:
-        reloaded-at: "20190925170401"
     spec:
       containers:
       - name: jmmaster

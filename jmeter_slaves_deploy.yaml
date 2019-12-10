@@ -13,8 +13,6 @@ spec:
     metadata:
       labels:
         jmeter_mode: slave
-      annotations:
-        reloaded-at: "20190925170401"
     spec:
       containers:
       - name: jmslave
@@ -23,10 +21,4 @@ spec:
         ports:
         - containerPort: 1099
         - containerPort: 50000
-        resources:
-          requests:
-            memory: "128Mi"
-            cpu: "250m"
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
+        resources: {}

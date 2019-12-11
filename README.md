@@ -1,11 +1,11 @@
 # The load test with Fargate for EKS
 
-It is inspire to [GoogleCloudPlatform/distributed-load-testing-using-kubernetes](https://github.com/GoogleCloudPlatform/distributed-load-testing-using-kubernetes) and refer to [kaarolch/kubernetes-jmeter](https://github.com/kaarolch/kubernetes-jmeter).
+It is inspire to [GoogleCloudPlatform/distributed-load-testing-using-kubernetes](https://github.com/GoogleCloudPlatform/distributed-load-testing-using-kubernetes) and refer to [kaarolch/kubernetes-jmeter](https://github.com/kaarolch/kubernetes-jmeter),[kubernauts/jmeter-kubernetes](https://github.com/kubernauts/jmeter-kubernetes)
 
 **prerequisits**
-Kubernetes > v1.10.11
-kubectl > v1.16.3
-eksctl > v0.11.10
+Kubernetes > v1.10.11  
+kubectl > v1.16.3  
+eksctl > v0.11.10  
 
 
 ### Build docker image
@@ -123,5 +123,5 @@ It download result.jtl file to the report directory.
 #### scaling pods
 Just change the number of replicas.
 ```
-kubectl -n [namespace] scale deployment/jmeter-slaves --replicas=4
+kubectl -n [namespace] scale deployment/jmeter-slaves --replicas=5
 ```
